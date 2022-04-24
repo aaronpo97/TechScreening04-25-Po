@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Vite App</title>
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"
+         integrity="sha512-+AdxWMqfOdtwMuXK482e5OgHYzN06s97n3NTAeAdTlUvlIgCBx3SUKvMculJIedylDfVCaQFdD6HaojI4aeBUA=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"
+      />
+   </head>
+   <body>
+      <div id="app">
+         <div class="ui container">
+            <form action="/" id="calculator-form">
+               <div class="ui grid">
+                  <div class="row">
+                     <div class="five wide column">
+                        <label for="left-operand">Left operand</label>
+                        <div class="ui input">
+                           <input type="text" placeholder="left-operand" id="left-operand" />
+                        </div>
+                     </div>
+                     <div class="five wide column">
+                        <div class="grouped fields">
+                           <label>Operand</label>
+                           <div class="field">
+                              <div class="ui radio checkbox">
+                                 <input type="radio" name="operand" value="add" />
+                                 <label>&plus;</label>
+                              </div>
+                           </div>
+                           <div class="field">
+                              <div class="ui radio checkbox">
+                                 <input type="radio" name="operand" value="subtract" />
+                                 <label>&minus;</label>
+                              </div>
+                           </div>
+                           <div class="field">
+                              <div class="ui radio checkbox">
+                                 <input type="radio" name="operand" value="multiply" />
+                                 <label>&times;</label>
+                              </div>
+                           </div>
+                           <div class="field">
+                              <div class="ui radio checkbox">
+                                 <input type="radio" name="operand" value="divide" />
+                                 <label>&divide;</label>
+                              </div>
+                           </div>
+                           <div class="field">
+                              <div class="ui radio checkbox">
+                                 <input type="radio" name="operand" value="modulo" />
+                                 <label>%</label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="five wide column">
+                        <div class="ui input">
+                           <label for="#right-operand">Right Operand</label>
+                           <input type="text" placeholder="right-operand" id="right-operand" />
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="three wide column">
+                        <div class="row">
+                           <button type="submit">Calculate</button>
+                        </div>
+                        <div class="row">
+                           <h3>Expression:</h3>
+                           <p id="expression-container"></p>
+                        </div>
+                        <div class="row">
+                           <h3>Result:</h3>
+                           <p id="calculation-result"></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <script type="module" src="/scripts/main.js"></script>
+   </body>
+</html>

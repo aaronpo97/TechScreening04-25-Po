@@ -53,21 +53,29 @@ public class RequestProcessor {
       rightOperand = Float.parseFloat(calcOperations.get("rightOperand"));
 
       float answer;
+      String operation;
+
       switch (calcOperations.get("operation")) {
         case "add":
           answer = (rightOperand + leftOperand);
+          operation = "+";
           break;
         case "subtract":
           answer = (rightOperand - leftOperand);
+          operation = "-";
           break;
         case "multiply":
           answer = (rightOperand * leftOperand);
+          operation = "*";
           break;
         case "divide":
+          if (rightOperand == 0) throw new Exception("Cannot divide by zero.");
           answer = (rightOperand / leftOperand);
+          operation = "/";
           break;
         case "modulo":
           answer = (rightOperand % leftOperand);
+          operation = "%";
           break;
         default:
           throw new Exception("Invalid operand.");
@@ -76,19 +84,21 @@ public class RequestProcessor {
       String expression =
         calcOperations.get("leftOperand") +
         " " +
-        calcOperations.get("operation") +
+        operation +
         " " +
         calcOperations.get("rightOperand");
 
-      jsonObject.put("expression", expression);
-      jsonObject.put("result", answer);
-      jsonObject.put("success", true);
-      jsonObject.put("status", 200);
+      jsonObject
+        .put("expression", expression)
+        .put("result", answer)
+        .put("success", true)
+        .put("status", 200);
     } catch (Exception e) {
-      jsonObject.put("error", "Could not parse request.");
-      jsonObject.put("message", e.getMessage());
-      jsonObject.put("success", true);
-      jsonObject.put("status", 200);
+      jsonObject
+        .put("error", "Could not parse request.")
+        .put("message", e.getMessage())
+        .put("success", false)
+        .put("status", 200);
 
       System.out.println("Something went wrong.");
 
