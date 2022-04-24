@@ -28,60 +28,81 @@ public class RequestProcessor {
 
   public void run() throws IOException {
     //write your code here
-    String request = (in.readLine());
-    String[] parsedRequestParams = request
-      .split(" ")[1].split("/")[1].split("&");
+    try {
+      String request = (in.readLine());
 
-    HashMap<String, String> calcOperations = new HashMap<String, String>();
+      System.out.println("Request made: ");
+      System.out.println(request);
 
-    for (String requestParam : parsedRequestParams) {
-      String[] keyValues = requestParam.split("=");
-      String key = (keyValues[0]);
-      String value = keyValues[1];
+      String[] parsedRequestParams = request
+        .split(" ")[1].split("/")[1].split("&");
 
-      calcOperations.put(key, value);
+      HashMap<String, String> calcOperations = new HashMap<String, String>();
+
+      for (String requestParam : parsedRequestParams) {
+        String[] keyValues = requestParam.split("=");
+        String key = (keyValues[0]);
+        String value = keyValues[1];
+
+        calcOperations.put(key, value);
+      }
+
+      float leftOperand, rightOperand;
+
+      leftOperand = Float.parseFloat(calcOperations.get("leftOperand"));
+      rightOperand = Float.parseFloat(calcOperations.get("rightOperand"));
+
+      float answer;
+      switch (calcOperations.get("operation")) {
+        case "add":
+          answer = (rightOperand + leftOperand);
+          break;
+        case "subtract":
+          answer = (rightOperand - leftOperand);
+          break;
+        case "multiply":
+          answer = (rightOperand * leftOperand);
+          break;
+        case "divide":
+          answer = (rightOperand / leftOperand);
+          break;
+        case "modulo":
+          answer = (rightOperand % leftOperand);
+          break;
+        default:
+          throw new Exception("Invalid operand.");
+      }
+
+      String expression =
+        calcOperations.get("leftOperand") +
+        " " +
+        calcOperations.get("operation") +
+        " " +
+        calcOperations.get("rightOperand");
+
+      jsonObject.put("expression", expression);
+      jsonObject.put("result", answer);
+      jsonObject.put("success", true);
+      jsonObject.put("status", 200);
+    } catch (Exception e) {
+      jsonObject.put("error", "Could not parse request.");
+      jsonObject.put("message", e.getMessage());
+      jsonObject.put("success", true);
+      jsonObject.put("status", 200);
+
+      System.out.println("Something went wrong.");
+
+      msgToClient =
+        "HTTP/1.1 400 Bad Request\n" +
+        "Server: HTTP server/0.1\n" +
+        "Access-Control-Allow-Origin: *\n\n";
     }
-
-    float leftOperand, rightOperand;
-
-    leftOperand = Float.parseFloat(calcOperations.get("leftOperand"));
-    rightOperand = Float.parseFloat(calcOperations.get("rightOperand"));
-
-    float answer;
-    switch (calcOperations.get("operation")) {
-      case "+":
-        answer = (rightOperand + leftOperand);
-        break;
-      case "-":
-        answer = (rightOperand - leftOperand);
-        break;
-      case "*":
-        answer = (rightOperand * leftOperand);
-        break;
-      case "/":
-        answer = (rightOperand / leftOperand);
-        break;
-      case "%":
-        answer = (rightOperand % leftOperand);
-        break;
-      default:
-        answer = 0;
-    }
-
-    String expression =
-      calcOperations.get("leftOperand") +
-      " " +
-      calcOperations.get("operation") +
-      " " +
-      calcOperations.get("rightOperand");
-    jsonObject.put("expression", expression);
-    jsonObject.put("result", answer);
-
     // end of your code
     String response = msgToClient + jsonObject.toString();
 
     os.write(response.getBytes());
     os.flush();
+
     socket.close();
   }
 }
