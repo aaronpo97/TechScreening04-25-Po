@@ -1,0 +1,42 @@
+#app {
+   margin-top: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#field-row{
+  height: 300px;
+}
+
+#operand-input-column{
+
+align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.calculate-container {
+   height: 80px;
+   text-align: center;
+}
+
+.expression-container {
+   height: 90px;
+   text-align: center;
+}
+
+.result-container {
+   height: 90px;
+   text-align: center;
+}
+
+.input {
+   width: 100%;
+}
+
+h3{
+   text-align: center;
+}
+

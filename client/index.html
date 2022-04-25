@@ -2,8 +2,7 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
-      <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>Calculator App</title>
       <link
          rel="stylesheet"
@@ -12,71 +11,76 @@
          crossorigin="anonymous"
          referrerpolicy="no-referrer"
       />
+      <link rel="stylesheet" href="styles/main.css" />
    </head>
    <body>
       <div id="app">
          <div class="ui container">
             <form action="/" id="calculator-form">
                <div class="ui grid">
-                  <div class="row">
+                  <div class="row" id="field-row">
                      <div class="five wide column">
-                        <label for="left-operand">Left operand</label>
-                        <div class="ui input">
-                           <input type="text" placeholder="left-operand" id="left-operand" />
+                        <div class="field">
+                           <h3>Left operand</h3>
+                           <div class="ui input">
+                              <input type="text" placeholder="left-operand" id="left-operand" />
+                           </div>
                         </div>
                      </div>
-                     <div class="five wide column">
+                     <div class="six wide column" id="operand-input-column">
                         <div class="grouped fields">
-                           <label>Operand</label>
                            <div class="field">
                               <div class="ui radio checkbox">
                                  <input type="radio" name="operand" value="add" />
-                                 <label>&plus;</label>
+                                 <label>Addition (&plus;)</label>
                               </div>
                            </div>
                            <div class="field">
                               <div class="ui radio checkbox">
                                  <input type="radio" name="operand" value="subtract" />
-                                 <label>&minus;</label>
+                                 <label>Subtraction (&minus;)</label>
                               </div>
                            </div>
                            <div class="field">
                               <div class="ui radio checkbox">
                                  <input type="radio" name="operand" value="multiply" />
-                                 <label>&times;</label>
+                                 <label> Multiplication (&times;) </label>
                               </div>
                            </div>
                            <div class="field">
                               <div class="ui radio checkbox">
                                  <input type="radio" name="operand" value="divide" />
-                                 <label>&divide;</label>
+                                 <label> Division (&divide;) </label>
                               </div>
                            </div>
                            <div class="field">
                               <div class="ui radio checkbox">
                                  <input type="radio" name="operand" value="modulo" />
-                                 <label>%</label>
+                                 <label>Remainder/Modulo (%)</label>
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class="five wide column">
-                        <div class="ui input">
-                           <label for="#right-operand">Right Operand</label>
-                           <input type="text" placeholder="right-operand" id="right-operand" />
+                        <div class="field">
+                           <h3>Right operand</h3>
+                           <div class="ui input">
+                              <!-- <label for="#right-operand">Right Operand</label> -->
+                              <input type="text" placeholder="right-operand" id="right-operand" />
+                           </div>
                         </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="three wide column">
-                        <div class="row">
-                           <button type="submit">Calculate</button>
+                  <div class="row" id="response-row">
+                     <div class="five wide column">
+                        <div class="row calculate-container">
+                           <button type="submit" class="ui button">Calculate</button>
                         </div>
-                        <div class="row">
+                        <div class="row expression-container">
                            <h3>Expression:</h3>
-                           <p id="expression-container"></p>
+                           <p id="expression-result"></p>
                         </div>
-                        <div class="row">
+                        <div class="row result-container">
                            <h3>Result:</h3>
                            <p id="calculation-result"></p>
                         </div>

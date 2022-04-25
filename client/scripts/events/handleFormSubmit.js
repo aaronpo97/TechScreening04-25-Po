@@ -1,9 +1,9 @@
-import makeCalculationRequest from './api/makeCalculationRequest';
+import makeCalculationRequest from '../api/makeCalculationRequest';
 
 const leftOperandInput = document.querySelector('#left-operand');
 const rightOperandInput = document.querySelector('#right-operand');
 const calculationResultContainer = document.querySelector('#calculation-result');
-const expressionContainer = document.querySelector('#expression-container');
+const expressionResultContainer = document.querySelector('#expression-result');
 
 const handleFormSubmit = event => {
    event.preventDefault();
@@ -17,7 +17,7 @@ const handleFormSubmit = event => {
    makeCalculationRequest(parseFloat(leftValue), parseFloat(rightValue), operand)
       .then(calculationResult => {
          calculationResultContainer.innerHTML = calculationResult.result.toString();
-         expressionContainer.innerHTML = calculationResult.result.toString();
+         expressionResultContainer.innerHTML = calculationResult.expression;
       })
       .catch(error => {
          if (error instanceof Error) {
