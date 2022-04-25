@@ -57,24 +57,24 @@ public class RequestProcessor {
 
       switch (calcOperations.get("operation")) {
         case "add":
-          answer = (rightOperand + leftOperand);
+          answer = (leftOperand + rightOperand);
           operation = "+";
           break;
         case "subtract":
-          answer = (rightOperand - leftOperand);
+          answer = (leftOperand - rightOperand);
           operation = "-";
           break;
         case "multiply":
-          answer = (rightOperand * leftOperand);
-          operation = "*";
+          answer = (leftOperand * rightOperand);
+          operation = "\u00d7";
           break;
         case "divide":
           if (rightOperand == 0) throw new Exception("Cannot divide by zero.");
-          answer = (rightOperand / leftOperand);
-          operation = "/";
+          answer = (leftOperand / rightOperand);
+          operation = "\u00f7";
           break;
         case "modulo":
-          answer = (rightOperand % leftOperand);
+          answer = (leftOperand % rightOperand);
           operation = "%";
           break;
         default:
@@ -98,7 +98,7 @@ public class RequestProcessor {
         .put("error", "Could not parse request.")
         .put("message", e.getMessage())
         .put("success", false)
-        .put("status", 200);
+        .put("status", 400);
 
       System.out.println("Something went wrong.");
 
