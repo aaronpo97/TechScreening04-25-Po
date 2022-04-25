@@ -18,9 +18,10 @@ npm install
 echo "VITE_API_URL='http://localhost:8080'" > .env
 ```
 
-To initialize the dev environment or view the app locally, type the following commands into terminal from the client directory: 
+To view the app locally, type the following commands into terminal from the client directory:
 
 ```sh
-npm run dev
+npm run build
+npm run preview
 ```
 
