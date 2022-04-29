@@ -1,9 +1,10 @@
 import clearErrorMessages from '../util/clearErrorMessages';
 
 /**
- * @returns {void}
+ * @description
+ * Closes the error message by adding the hidden class to the error message container.
  */
-const closeErrorMessage = () => {
+const closeErrorMessage = (): void => {
    const errorMessageContainer = document.querySelector('#error-message');
    errorMessageContainer.classList.add('hidden');
    clearErrorMessages();

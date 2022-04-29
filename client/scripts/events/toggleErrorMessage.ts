@@ -1,12 +1,12 @@
 import clearErrorMessages from '../util/clearErrorMessages';
 
 /**
- * @param {Error} error
- * @returns {void}
+ * @description
+ * Toggles the error message by removing the 'hidden' class in the error-message container. Creates a text node and appends the error list with a li element.
  */
-const toggleErrorMessage = error => {
+const toggleErrorMessage = (error: Error): void => {
    clearErrorMessages();
-   console.log(error);
+
    const errorMessageContainer = document.querySelector('#error-message');
    const errorMessageList = document.querySelector('#error-list');
 

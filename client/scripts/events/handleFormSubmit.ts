@@ -1,28 +1,25 @@
 import makeCalculationRequest from '../api/makeCalculationRequest';
+import setResult from '../util/setResult';
 import closeErrorMessage from './closeErrorMessage';
 import toggleErrorMessage from './toggleErrorMessage';
 
-/** @type {HTMLInputElement} */
-const leftOperandInput = document.querySelector('#left-operand');
+const leftOperandInput: HTMLInputElement = document.querySelector('#left-operand');
+const rightOperandInput: HTMLInputElement = document.querySelector('#right-operand');
 
-/** @type {HTMLInputElement} */
-const rightOperandInput = document.querySelector('#right-operand');
-
-/** @type {HTMLDivElement} */
-const calculationResultContainer = document.querySelector('#calculation-result');
-
-/** @type {HTMLDivElement} */
-const expressionResultContainer = document.querySelector('#expression-result');
-
-/** @param {Event} event */
-const handleFormSubmit = event => {
+/**
+ * @description
+ * Makes a calculation request and then takes the calculation data and upon successful response will display the value into the DOM or upon an error response will trigger an error message with the error reason.
+ *
+ */
+const handleFormSubmit = (event: Event) => {
    event.preventDefault();
 
    const { value: leftValueStr } = leftOperandInput;
    const { value: rightValueStr } = rightOperandInput;
 
-   /** @type {HTMLInputElement} */
-   const selectedOperandInput = document.querySelector('input[name="operand"]:checked');
+   const selectedOperandInput: HTMLInputElement = document.querySelector(
+      'input[name="operand"]:checked'
+   );
    const operand = selectedOperandInput.value;
 
    const leftValueNum = parseFloat(leftValueStr);
@@ -34,8 +31,7 @@ const handleFormSubmit = event => {
             return;
          }
          closeErrorMessage();
-         calculationResultContainer.innerHTML = calculationResult.result.toString();
-         expressionResultContainer.innerHTML = calculationResult.expression;
+         setResult(calculationResult);
       })
       .catch(error => {
          if (error instanceof Error) {

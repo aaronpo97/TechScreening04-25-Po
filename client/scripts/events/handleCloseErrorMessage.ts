@@ -1,9 +1,10 @@
 import closeErrorMessage from './closeErrorMessage';
 
 /**
- * @returns {void}
+ * @description
+ * Triggers the closeErrorMessage function.
  */
-const handleCloseErrorMessage = () => {
+const handleCloseErrorMessage = (): void => {
    closeErrorMessage();
 };
 
